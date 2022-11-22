@@ -1,5 +1,5 @@
 # to-do-app
-
+![preview](preview.gif)
 ## Project setup
 ```
 npm install
