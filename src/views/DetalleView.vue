@@ -48,9 +48,19 @@
         },
         methods: {
           saveTask: function(){
-            
+            const task = {
+              name: this.name,
+              date: new Date().toLocaleDateString(),
+              index: this.index
+            }
+
+            this.$emit('saveTask', task);
+            this.taskName = '';
+            this.$router.push('/pendientes');
           },
           deleteTask: function(){
+            this.$emit('deleteTask', this.index);
+            this.$router.push('/pendientes');
 
           }
 

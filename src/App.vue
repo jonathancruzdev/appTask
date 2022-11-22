@@ -50,7 +50,12 @@
     </v-app-bar>
 
     <v-main>
-      <router-view  v-bind:tasks="tasks"  v-on:newTask="addTask"  />
+      <router-view  
+        v-bind:tasks="tasks"  
+        v-on:newTask="addTask" 
+        v-on:saveTask="saveTask"
+        v-on:deleteTask="deleteTask"
+      />
     </v-main>
   </v-app>
 </template>
@@ -75,6 +80,15 @@ export default {
       console.log('getTask...');
       const tasks = JSON.parse( localStorage.getItem('tasks') );
       this.tasks = tasks ? tasks : [];
+    },
+    saveTask: function(task){
+      this.tasks[task.index].name = task.name;
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    },
+    deleteTask: function(index){
+      this.tasks.splice(index,1);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+
     }
 
   }
