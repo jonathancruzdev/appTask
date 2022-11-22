@@ -8,11 +8,7 @@
       <div class="d-flex align-center">
         <router-link to="/">
           <v-icon>mdi-home</v-icon>
-
-
         </router-link>
-
-
 
         <v-img
           alt="Vuetify Name"
@@ -54,7 +50,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view  v-bind:tasks="tasks"  v-on:newTask="addTask"  />
     </v-main>
   </v-app>
 </template>
@@ -63,9 +59,24 @@
 
 export default {
   name: 'App',
-
+  created: function(){
+    this.getTasks();
+  },
   data: () => ({
-    //
+    tasks: []
   }),
+  methods: {
+    addTask: function(task){
+      console.log('add Task');
+      this.tasks.push(task);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    },
+    getTasks: function(){
+      console.log('getTask...');
+      const tasks = JSON.parse( localStorage.getItem('tasks') );
+      this.tasks = tasks ? tasks : [];
+    }
+
+  }
 };
 </script>

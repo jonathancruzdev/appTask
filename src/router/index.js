@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import CompletadasView from '../views/CompletadasView'
 import PendientesView from '../views/PendientesView'
 import NuevaView from '../views/NuevaView'
-
+import DetalleView from '../views/DetalleView'
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +27,11 @@ const routes = [
     path: '/nueva',
     name: 'nueva',
     component: NuevaView
+  },
+  {
+    path: '/detalle/:id',
+    name: 'detalle',
+    component: DetalleView
   },
   {
     path: '/about',
